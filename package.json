@@ -1,5 +1,5 @@
 {
-  "name": "capacitor-plugin-facebook-analytics",
+  "name": "@jonit-dev/capacitor-plugin-facebook-analytics",
   "version": "1.0.0",
   "description": "Provide Facebook analytics functionality to Capacitor-based projects.",
   "main": "dist/plugin.js",

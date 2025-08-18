@@ -8,14 +8,14 @@
 ## Installation
 
 ```bash
-npm install capacitor-plugin-facebook-analytics
+npm install @jonit-dev/capacitor-plugin-facebook-analytics
 npx cap sync
 ```
 
 To use yarn:
 
 ```bash
-yarn add capacitor-plugin-facebook-analytics
+yarn add @jonit-dev/capacitor-plugin-facebook-analytics
 npx cap sync
 ```
 
@@ -64,7 +64,7 @@ More information can be found here: https://developers.facebook.com/docs/app-eve
 ### logEvent
 
 ```ts
-import { FacebookAnalytics } from 'capacitor-plugin-facebook-analytics';
+import { FacebookAnalytics } from '@jonit-dev/capacitor-plugin-facebook-analytics';
 
 // Example commands.
 await FacebookAnalytics.logEvent({ event: 'test_event', valueToSum: 1.0, params: { test: 'value' } });
