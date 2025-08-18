@@ -1,26 +1,27 @@
+## Requirements
+
+- **Capacitor 7.0.0+**
+- **iOS 14.0+** 
+- **Android API 23+** (Android 6.0)
+- **Node.js 20+**
+
 ## Installation
 
 ```bash
-$ npm i --save capacitor-plugin-facebook-analytics
+npm install capacitor-plugin-facebook-analytics
+npx cap sync
 ```
 
-To use yarn
+To use yarn:
 
 ```bash
 yarn add capacitor-plugin-facebook-analytics
+npx cap sync
 ```
 
 ## Android configuration
 
-In file `android/app/src/main/java/**/**/MainActivity.java`, add the plugin to the initialization list:
-
-```diff
-  this.init(savedInstanceState, new ArrayList<Class<? extends Plugin>>() {{
-    [...]
-+   add(com.vrba.plugins.facebookanalytics.FacebookAnalytics.class);
-    [...]
-  }});
-```
+> **Note**: Manual plugin registration is no longer required in Capacitor 7
 
 In file `android/app/src/main/AndroidManifest.xml`, add the following XML elements under `<manifest><application>` :
 
@@ -63,14 +64,24 @@ More information can be found here: https://developers.facebook.com/docs/app-eve
 ### logEvent
 
 ```ts
-import { Plugins } from '@capacitor/core';
-const { FacebookAnalytics } = Plugins;
+import { FacebookAnalytics } from 'capacitor-plugin-facebook-analytics';
 
 // Example commands.
-await FacebookAnalytics.logEvent(options: { event: string, params?: any }): Promise<string>;
-await FacebookAnalytics.logPurchase(options: {amount: number, currency: string, params: any}): Promise<string>;
-await FacebookAnalytics.logAddPaymentInfo(options: {success: number}): Promise<string>;
-await FacebookAnalytics.logAddToCart(options: {amount: number, currency: string, params?: any}): Promise<string>;
-await FacebookAnalytics.logCompleteRegistration(options: {params?: any}): Promise<string>;
-await FacebookAnalytics.logInitiatedCheckout(options: {amount: number, params?: any}): Promise<string>;
+await FacebookAnalytics.logEvent({ event: 'test_event', valueToSum: 1.0, params: { test: 'value' } });
+await FacebookAnalytics.logPurchase({ amount: 9.99, currency: 'USD', params: { product: 'item' } });
+await FacebookAnalytics.logAddPaymentInfo({ success: 1 });
+await FacebookAnalytics.logAddToCart({ amount: 19.99, currency: 'USD', params: { item: 'product' } });
+await FacebookAnalytics.logCompleteRegistration({ params: { method: 'email' } });
+await FacebookAnalytics.logInitiatedCheckout({ amount: 29.99, params: { num_items: 2 } });
+```
+
+### Method Signatures
+
+```ts
+logEvent(options: { event: string, valueToSum?: number, params?: any }): Promise<string>;
+logPurchase(options: { amount: number, currency: string, params?: any }): Promise<string>;
+logAddPaymentInfo(options: { success: number }): Promise<string>;
+logAddToCart(options: { amount: number, currency: string, params?: any }): Promise<string>;
+logCompleteRegistration(options: { params?: any }): Promise<string>;
+logInitiatedCheckout(options: { amount: number, params?: any }): Promise<string>;
 ```

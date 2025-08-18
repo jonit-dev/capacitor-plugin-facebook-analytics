@@ -35,7 +35,7 @@ public class FacebookAnalytics: CAPPlugin {
         }
         
 
-        call.success()
+        call.resolve()
     }
 
     @objc func logPurchase(_ call: CAPPluginCall) {
@@ -50,7 +50,7 @@ public class FacebookAnalytics: CAPPlugin {
         
         AppEvents.logPurchase(amount, currency: currency, parameters: params)
 
-        call.success()
+        call.resolve()
     }
 
     @objc func logAddPaymentInfo(_ call: CAPPluginCall) {
@@ -61,7 +61,7 @@ public class FacebookAnalytics: CAPPlugin {
 
         AppEvents.logEvent(.addedPaymentInfo, parameters: ["success": success])
 
-        call.success()
+        call.resolve()
     }
 
     @objc func logAddToCart(_ call: CAPPluginCall) {
@@ -79,7 +79,7 @@ public class FacebookAnalytics: CAPPlugin {
 
         AppEvents.logEvent(.addedToCart, valueToSum: amount, parameters: params)
 
-        call.success()
+        call.resolve()
     }
     
     @objc func logCompleteRegistration(_ call: CAPPluginCall) {
@@ -89,7 +89,7 @@ public class FacebookAnalytics: CAPPlugin {
 
         AppEvents.logEvent(.completedRegistration, parameters: parameters)
 
-        call.success()
+        call.resolve()
     }
     @objc func logInitiatedCheckout(_ call: CAPPluginCall) {
         print("logging logInitiatedCheckout")
@@ -102,6 +102,6 @@ public class FacebookAnalytics: CAPPlugin {
 
         AppEvents.logEvent(.initiatedCheckout, valueToSum: amount, parameters: parameters)
 
-        call.success()
+        call.resolve()
     }
 }

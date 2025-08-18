@@ -1,22 +1,21 @@
 package com.vrba.plugins.facebookanalytics;
 
+import android.os.Bundle;
 import com.facebook.appevents.AppEventsConstants;
+import com.facebook.appevents.AppEventsLogger;
 import com.getcapacitor.Bridge;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.NativePlugin;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
-import com.facebook.appevents.AppEventsLogger;
-
-import android.os.Bundle;
-
 import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Iterator;
 
 @NativePlugin
 public class FacebookAnalytics extends Plugin {
+
     private AppEventsLogger logger;
 
     @Override
@@ -55,7 +54,6 @@ public class FacebookAnalytics extends Plugin {
             } else {
                 logger.logEvent(event, parameters);
             }
-
         } else {
             if (valueToSum != null) {
                 logger.logEvent(event, valueToSum);
@@ -92,7 +90,6 @@ public class FacebookAnalytics extends Plugin {
         } else {
             logger.logPurchase(BigDecimal.valueOf(amount), currency);
         }
-
 
         call.success();
     }
