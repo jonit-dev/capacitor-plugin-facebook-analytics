@@ -1,6 +1,10 @@
 import Foundation
 import Capacitor
+#if canImport(FacebookCore)
+import FacebookCore
+#elseif canImport(FBSDKCoreKit)
 import FBSDKCoreKit
+#endif
 
 /**
  * Please read the Capacitor iOS Plugin Development Guide

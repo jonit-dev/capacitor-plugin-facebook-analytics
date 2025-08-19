@@ -31,7 +31,3 @@ export class FacebookAnalyticsWeb extends WebPlugin implements FacebookAnalytics
     return Promise.resolve(JSON.stringify(options));
   }
 }
-
-const FacebookAnalytics = new FacebookAnalyticsWeb();
-
-export { FacebookAnalytics };

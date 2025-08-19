@@ -5,15 +5,17 @@ import com.facebook.appevents.AppEventsConstants;
 import com.facebook.appevents.AppEventsLogger;
 import com.getcapacitor.Bridge;
 import com.getcapacitor.JSObject;
-import com.getcapacitor.NativePlugin;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
-import com.getcapacitor.PluginMethod;
+import com.getcapacitor.annotation.CapacitorPlugin;
+import com.getcapacitor.annotation.Permission;
+import com.getcapacitor.annotation.PermissionCallback;
+import com.getcapacitor.annotation.PluginMethod;
 import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Iterator;
 
-@NativePlugin
+@CapacitorPlugin(name = "FacebookAnalytics")
 public class FacebookAnalytics extends Plugin {
 
     private AppEventsLogger logger;
@@ -62,7 +64,7 @@ public class FacebookAnalytics extends Plugin {
             }
         }
 
-        call.success();
+        call.resolve();
     }
 
     @PluginMethod
@@ -91,7 +93,7 @@ public class FacebookAnalytics extends Plugin {
             logger.logPurchase(BigDecimal.valueOf(amount), currency);
         }
 
-        call.success();
+        call.resolve();
     }
 
     @PluginMethod
@@ -101,7 +103,7 @@ public class FacebookAnalytics extends Plugin {
         params.putInt(AppEventsConstants.EVENT_PARAM_SUCCESS, success);
         logger.logEvent(AppEventsConstants.EVENT_NAME_ADDED_PAYMENT_INFO, params);
 
-        call.success();
+        call.resolve();
     }
 
     @PluginMethod
@@ -117,7 +119,7 @@ public class FacebookAnalytics extends Plugin {
         params.putString(AppEventsConstants.EVENT_PARAM_CURRENCY, currency);
         logger.logEvent(AppEventsConstants.EVENT_NAME_ADDED_TO_CART, amount, params);
 
-        call.success();
+        call.resolve();
     }
 
     @PluginMethod
@@ -137,7 +139,7 @@ public class FacebookAnalytics extends Plugin {
             logger.logEvent(AppEventsConstants.EVENT_NAME_COMPLETED_REGISTRATION);
         }
 
-        call.success();
+        call.resolve();
     }
 
     @PluginMethod
@@ -163,6 +165,6 @@ public class FacebookAnalytics extends Plugin {
             logger.logEvent(AppEventsConstants.EVENT_NAME_INITIATED_CHECKOUT, amount);
         }
 
-        call.success();
+        call.resolve();
     }
 }
